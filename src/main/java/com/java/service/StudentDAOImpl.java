@@ -30,8 +30,11 @@ public class StudentDAOImpl implements StudentDAO{
 		this.studentRepository = studentRepository;
 	}
 	@Override
-	public void save(Student student) {
-		studentRepository.save(student);
+	public void save(List<Student> student) {
+		
+			for(Student s1 : student) {
+				studentRepository.save(s1);
+			}
 	}
 	
 	@Override
@@ -40,16 +43,12 @@ public class StudentDAOImpl implements StudentDAO{
 	}
 	
 	@Override
-	public void generateJsonReports(List<Student> students) {
+	public void generateJsonReports(Student students) {
 		
 		ObjectMapper mapper = new ObjectMapper();
-		ExecutorService executors = Executors.newFixedThreadPool(5);
-		executors.execute(() -> {
-			for(int i=0; i<=students.size()-1; i++) {
-				Student student = studentRepository.findOne(students.get(i).getId());
+		
 				try {
-					mapper.writerWithDefaultPrettyPrinter().writeValue(new File("reports\\"+student.getId()+"_student.json"), student);
-					System.out.println(Thread.currentThread().getName());
+					mapper.writerWithDefaultPrettyPrinter().writeValue(new File("reports\\"+students.getId()+"_student.json"), students);
 					}
 				catch(JsonGenerationException e) {
 					
@@ -61,9 +60,7 @@ public class StudentDAOImpl implements StudentDAO{
 					
 				}
 			}
-		});
-		
-	}
+	
 	@Override
 	public List<Student> getStudents() {
 		List<Student> students = new ArrayList<>();
@@ -71,6 +68,10 @@ public class StudentDAOImpl implements StudentDAO{
 		.forEach(students::add);
 		return students;
 	}
+	@Override
+	public void calculateRank(Student students) {
 
-	
-}
+		students.setTotal_marks(students.getMarks_english()+students.getMarks_physics()+students.getMarks_chemistry()+students.getMarks_german()+students.getMarks_maths());
+		
+		}
+	}	

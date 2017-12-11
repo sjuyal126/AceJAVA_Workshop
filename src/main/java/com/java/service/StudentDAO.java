@@ -7,12 +7,14 @@ import com.java.model.Student;
 
 public interface StudentDAO {
 	
-	void save(Student student);
+	void save(List<Student> student);
 	
 	public Student getById(String id);
 	
-	public void generateJsonReports(List<Student> students);
+	public void generateJsonReports(Student students);
 	
 	public List<Student> getStudents();
+	
+	public void calculateRank(Student students);
 
 }

@@ -1,1 +1,11 @@
-{"name":"Rohan","id":"12"}
+{
+  "name" : "Ankit",
+  "id" : "12",
+  "marks_physics" : 96,
+  "marks_maths" : 95,
+  "marks_english" : 86,
+  "marks_german" : 76,
+  "rank" : 0,
+  "marks_chemistry" : 95,
+  "Total_Marks" : 448
+}

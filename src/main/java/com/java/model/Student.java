@@ -19,20 +19,26 @@ public class Student implements Serializable {
 	@Id
 	@XmlElement(name="ID")
 	String ids;
+	
 	@XmlElement(name="NAME")
 	String names;
+	
 	@XmlElement(name="PHYSICS")
 	@Column(name="PHYSICS_MARKS")
 	int physics_marks;
+	
 	@XmlElement(name="CHEMISTRY")
 	@Column(name="CHEMISTRY_MARKS")
 	int chemistry_marks;
+	
 	@XmlElement(name="MATHS")
 	@Column(name="MATHS_MARKS")
 	int math_marks;
+	
 	@XmlElement(name="ENGLISH")
 	@Column(name="ENGLISH_MARKS")
 	int english_marks;
+	
 	@XmlElement(name="GERMAN")
 	@Column(name="GERMAN_MARKS")
 	int german_marks;
@@ -40,8 +46,8 @@ public class Student implements Serializable {
 	@Transient
 	@JsonProperty("Total_Marks")
 	int total_marks;
+	
 	@Transient
-	@JsonProperty("Rank")
 	int Rank;
 	
 	public int getTotal_marks() {
@@ -53,8 +59,8 @@ public class Student implements Serializable {
 	public int getRank() {
 		return Rank;
 	}
-	public void setRank(int rank) {
-		Rank = rank;
+	public void setRank(int Rank) {
+		this.Rank = Rank;
 	}
 	public int getMarks_physics() {
 		return physics_marks;
