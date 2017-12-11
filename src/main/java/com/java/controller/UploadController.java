@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -27,7 +28,8 @@ import javax.xml.bind.Unmarshaller;
 public class UploadController {
 
     //Save the uploaded file to this folder
-    private static String UPLOADED_FOLDER = "E://temp//";
+    private static String UPLOADED_FOLDER = "D://temp//";
+    List<Student> listOfStudents;
     
     @Autowired
     private StudentDAO studentDAOimpl;
@@ -74,12 +76,8 @@ public class UploadController {
     			}
     		}
     		
-    		for(Student s1 : school.getStudents()) {
-            	
-            	studentDAOimpl.generateJsonReports(s1);
-            }
-            
-            
+    		studentDAOimpl.generateJsonReports(studentDAOimpl.getStudents());
+    		
 
             redirectAttributes.addFlashAttribute("message",
                     "You successfully uploaded '" + file.getOriginalFilename() + "'");

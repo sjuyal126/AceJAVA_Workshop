@@ -5,6 +5,11 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,19 +40,36 @@ public class StudentDAOImpl implements StudentDAO{
 	}
 	
 	@Override
-	public void generateJsonReports(Student student) {
+	public void generateJsonReports(List<Student> students) {
 		
 		ObjectMapper mapper = new ObjectMapper();
-		try {
-			mapper.writeValue(new File("reports\\"+student.getId()+"_student.json"), student);
-		}
-		catch (JsonGenerationException e) {
-			e.printStackTrace();
-		} catch (JsonMappingException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		ExecutorService executors = Executors.newFixedThreadPool(5);
+		executors.execute(() -> {
+			for(int i=0; i<=students.size()-1; i++) {
+				Student student = studentRepository.findOne(students.get(i).getId());
+				try {
+					mapper.writerWithDefaultPrettyPrinter().writeValue(new File("reports\\"+student.getId()+"_student.json"), student);
+					System.out.println(Thread.currentThread().getName());
+					}
+				catch(JsonGenerationException e) {
+					
+				}
+				catch(JsonMappingException e) {
+					
+				}
+				catch(IOException e) {
+					
+				}
+			}
+		});
+		
+	}
+	@Override
+	public List<Student> getStudents() {
+		List<Student> students = new ArrayList<>();
+		studentRepository.findAll()
+		.forEach(students::add);
+		return students;
 	}
 
 	
