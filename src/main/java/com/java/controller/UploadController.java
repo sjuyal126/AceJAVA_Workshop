@@ -32,7 +32,7 @@ import javax.xml.bind.Unmarshaller;
 public class UploadController {
 
     //Save the uploaded file to this folder
-    private static String UPLOADED_FOLDER = "D://temp//";
+    private static String UPLOADED_FOLDER = "E://temp//";
     List<Student> listOfStudents;
     
     @Autowired
@@ -68,7 +68,7 @@ public class UploadController {
 			
             studentDAOimpl.save(school.getStudents());
             
-            /*File files = new File("reports\\");
+            File files = new File("reports\\");
     		if(files.isDirectory()) {
     			if(files.listFiles().length>0) {
     				File[] f = files.listFiles();
@@ -81,19 +81,22 @@ public class UploadController {
     		}
     		
     		for(Student s1 : studentDAOimpl.getStudents()) {
-    			studentDAOimpl.setStatus(s1);
-    			studentDAOimpl.calculateTotal(s1);
+    			s1.setSTATUS(studentDAOimpl.setStatus(s1.getSubject()));
+    			s1.setTotal_marks(studentDAOimpl.calculateTotal(s1.getSubject()));
+    			studentDAOimpl.generateJsonReports(s1);
+    			
+    			
     		}
     		
-    		studentDAOimpl.calculateRank(school.getStudents());
-    		*/
+    		// studentDAOimpl.calculateRank(school.getStudents());
+    		
             
-    		ExecutorService executors = Executors.newFixedThreadPool(5);
+    		/*ExecutorService executors = Executors.newFixedThreadPool(5);
     		for(Student s1 : studentDAOimpl.getStudents()) {
     		executors.submit(() -> {
  			studentDAOimpl.generateJsonReports(s1);
     		});
-    		}
+    		}*/
    		
 
             redirectAttributes.addFlashAttribute("message",

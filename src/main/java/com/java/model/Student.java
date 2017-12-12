@@ -1,6 +1,8 @@
 package com.java.model;
 
 import java.io.Serializable;
+
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Set;
@@ -8,86 +10,78 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Transient;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
-@XmlRootElement(name="STUDENT")
-public class Student implements Serializable, Comparable {
-
+@XmlRootElement(name="Student")
+public class Student {
+	
 	@Id
+	@Column(name = "student_id")
 	@XmlElement(name="ID")
-	int student_id;
+	private int student_id;
 	
-	@XmlElement(name="NAME")
-	String student_names;
-	
-	@OneToMany(cascade=CascadeType.ALL)
-	@JoinColumn(name="student_id")
-	private Set<Subject> subjects;
+	@XmlElement(name="Name")
+	private String student_name;
 	
 	@Transient
-	@JsonProperty("Total_Marks")
-	int total_marks;
+	private int total_marks;
 	
 	@Transient
-	int Rank;
+	private String STATUS;
 	
-	@Transient
-	String STATUS;
-	
-	public String getSTATUS() {
-		return STATUS;
-	}
-	public void setSTATUS(String sTATUS) {
-		STATUS = sTATUS;
-	}
-	public int getTotal_marks() {
-		return total_marks;
-	}
-	public void setTotal_marks(int total_marks) {
-		this.total_marks = total_marks;
-	}
-	public int getRank() {
-		return Rank;
-	}
-	public void setRank(int Rank) {
-		this.Rank = Rank;
-	}
-	
-	public Set<Subject> getSubjects() {
-		return subjects;
-	}
-	public void setSubjects(Set<Subject> subjects) {
-		this.subjects = subjects;
-	}
+	@OneToMany(mappedBy = "student", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@XmlElementWrapper(name="Subjects")
+    @XmlElement(name="subject")
+	private Set<Subject>  listOfsubjects;
+
 	public int getId() {
 		return student_id;
 	}
-	public void setId(int ids) {
-		this.student_id = ids;
-	}
-	public String getName() {
-		return student_names;
-	}
-	public void setName(String names) {
-		this.student_names = names;
-	}
-	
-	public int compareTo(Object obj) {
-		Student s1 = (Student) obj;
-		if(this.total_marks - s1.total_marks > 0) {
-			return -1;
-		}
-		else
-			return +1;
+
+	public void setId(int id) {
+		this.student_id = id;
 	}
 
+	public String getName() {
+		return student_name;
+	}
+
+	public void setName(String name) {
+		this.student_name = name;
+	}
+
+	public int getTotal_marks() {
+		return total_marks;
+	}
+
+	public void setTotal_marks(int total_marks) {
+		this.total_marks = total_marks;
+	}
+
+	public String getSTATUS() {
+		return STATUS;
+	}
+
+	public void setSTATUS(String sTATUS) {
+		STATUS = sTATUS;
+	}
+
+	public Set<Subject> getSubject() {
+		return listOfsubjects;
+	}
+
+	public void setSubject(Set<Subject> subject) {
+		this.listOfsubjects = subject;
+	}
 }

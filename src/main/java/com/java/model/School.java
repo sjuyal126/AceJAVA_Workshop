@@ -5,9 +5,9 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement(name="SCHOOL")
+@XmlRootElement(name="School")
 public class School {
-	@XmlElement(name="STUDENT")
+	@XmlElement(name="Student")
 	public List<Student> records;
 
 	public List<Student> getStudents() {

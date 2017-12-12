@@ -1,9 +1,10 @@
 package com.java.service;
 
 import java.util.List;
-
+import java.util.Set;
 
 import com.java.model.Student;
+import com.java.model.Subject;
 
 public interface StudentDAO {
 	
@@ -15,9 +16,9 @@ public interface StudentDAO {
 	
 	public List<Student> getStudents();
 	
-	// public void setStatus(Student student);
+	public String setStatus(Set<Subject> subjects);
 	
-	// public Student calculateTotal(Student students);
+	public int calculateTotal(Set<Subject> subjects); 
 	
 	// public void calculateRank(List<Student> students);
 
