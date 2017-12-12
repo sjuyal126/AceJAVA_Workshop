@@ -11,10 +11,14 @@ public interface StudentDAO {
 	
 	public Student getById(String id);
 	
-	public void generateJsonReports(Student students);
+    public void generateJsonReports(Student students);
 	
 	public List<Student> getStudents();
 	
-	public void calculateRank(Student students);
+	// public void setStatus(Student student);
+	
+	// public Student calculateTotal(Student students);
+	
+	// public void calculateRank(List<Student> students);
 
 }

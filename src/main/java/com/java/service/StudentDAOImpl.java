@@ -2,14 +2,18 @@ package com.java.service;
 
 
 import java.io.File;
+
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +28,7 @@ import com.java.repository.StudentRepository;
 public class StudentDAOImpl implements StudentDAO{
 	
 	private StudentRepository studentRepository;
+	private List<Student> list;
 	
 	@Autowired
 	public StudentDAOImpl(StudentRepository studentRepository) {
@@ -68,10 +73,26 @@ public class StudentDAOImpl implements StudentDAO{
 		.forEach(students::add);
 		return students;
 	}
-	@Override
-	public void calculateRank(Student students) {
-
+	
+/*	@Override
+	public Student calculateTotal(Student students) {
+		
 		students.setTotal_marks(students.getMarks_english()+students.getMarks_physics()+students.getMarks_chemistry()+students.getMarks_german()+students.getMarks_maths());
+		return students;
 		
 		}
-	}	
+	@Override
+	public void calculateRank(List<Student> students) {
+		students.stream().filter(t -> t.getSTATUS() == "PASS").collect(Collectors.toList());
+		students.stream().sorted();
+		students.stream().findFirst().get().setRank(1);
+	}
+	@Override
+	public void setStatus(Student student) {
+		if (student.getMarks_chemistry() < 35 || student.getMarks_english() < 35 || student.getMarks_german() < 35 || student.getMarks_maths() < 35 || student.getMarks_physics() < 35 ) {
+			student.setSTATUS("FAIL");
+		}
+		else
+			student.setSTATUS("PASS");
+	}
+*/}	

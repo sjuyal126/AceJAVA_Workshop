@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Implementation-Title: acejava
 Implementation-Version: 1.0
-Built-By: user
+Built-By: sjuyal
 Implementation-Vendor-Id: com.java
-Build-Jdk: 1.8.0_151
+Build-Jdk: 1.8.0_131
 Implementation-URL: http://projects.spring.io/spring-boot/acejava/
 Created-By: Maven Integration for Eclipse
 Implementation-Vendor: Pivotal Software, Inc.

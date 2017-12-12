@@ -22,6 +22,7 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -31,7 +32,7 @@ import javax.xml.bind.Unmarshaller;
 public class UploadController {
 
     //Save the uploaded file to this folder
-    private static String UPLOADED_FOLDER = "E://temp//";
+    private static String UPLOADED_FOLDER = "D://temp//";
     List<Student> listOfStudents;
     
     @Autowired
@@ -56,7 +57,6 @@ public class UploadController {
 
         try {
 
-            // Get the file and save it somewhere
             byte[] bytes = file.getBytes();
             Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
             Files.write(path, bytes);
@@ -68,7 +68,7 @@ public class UploadController {
 			
             studentDAOimpl.save(school.getStudents());
             
-            File files = new File("reports\\");
+            /*File files = new File("reports\\");
     		if(files.isDirectory()) {
     			if(files.listFiles().length>0) {
     				File[] f = files.listFiles();
@@ -80,15 +80,21 @@ public class UploadController {
     			}
     		}
     		
-    		// studentDAOimpl.generateJsonReports(studentDAOimpl.getStudents());
-    		ExecutorService executors = Executors.newFixedThreadPool(5);
-    		for(Student s1 : studentDAOimpl.getStudents())
-    		executors.execute(() -> {
-    			studentDAOimpl.calculateRank(s1);
-    			studentDAOimpl.generateJsonReports(s1);
-    			
-    		});
+    		for(Student s1 : studentDAOimpl.getStudents()) {
+    			studentDAOimpl.setStatus(s1);
+    			studentDAOimpl.calculateTotal(s1);
+    		}
     		
+    		studentDAOimpl.calculateRank(school.getStudents());
+    		*/
+            
+    		ExecutorService executors = Executors.newFixedThreadPool(5);
+    		for(Student s1 : studentDAOimpl.getStudents()) {
+    		executors.submit(() -> {
+ 			studentDAOimpl.generateJsonReports(s1);
+    		});
+    		}
+   		
 
             redirectAttributes.addFlashAttribute("message",
                     "You successfully uploaded '" + file.getOriginalFilename() + "'");
