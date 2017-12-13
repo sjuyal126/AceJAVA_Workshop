@@ -1,5 +1,7 @@
 package com.java.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 
 import javax.persistence.GeneratedValue;
@@ -17,7 +19,7 @@ import javax.xml.bind.annotation.*;
 
 @Entity
 @XmlAccessorType(XmlAccessType.FIELD)
-public class Subject {
+public class Subject implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

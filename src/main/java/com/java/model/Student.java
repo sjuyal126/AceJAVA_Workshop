@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
 @XmlRootElement(name="Student")
-public class Student {
+public class Student implements Serializable{
 	
 	@Id
 	@Column(name = "student_id")
@@ -40,6 +40,17 @@ public class Student {
 	@Transient
 	private String STATUS;
 	
+	@Transient
+	public int rank;
+	
+	public int getRANK() {
+		return rank;
+	}
+
+	public void setRANK(int rank) {
+		this.rank = rank;
+	}
+
 	@OneToMany(mappedBy = "student", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@XmlElementWrapper(name="Subjects")
     @XmlElement(name="subject")

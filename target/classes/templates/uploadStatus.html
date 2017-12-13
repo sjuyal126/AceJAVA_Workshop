@@ -2,11 +2,17 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <body>
 
-<h1>Spring Boot - Upload Status</h1>
+<h1>Upload Status</h1>
 
 <div th:if="${message}">
     <h2 th:text="${message}"/>
 </div>
+
+<form method="POST" action="/viewReports">
+<br/>
+<input type="text" name="id"/><br/>
+<input type="button" value="View Reports"/>
+</form>
 
 </body>
 </html>

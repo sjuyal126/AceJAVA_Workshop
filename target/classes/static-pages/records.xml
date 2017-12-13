@@ -1,0 +1,95 @@
+<School>
+<Student>
+<ID>101</ID>
+<Name>Sakshi</Name>
+<Subjects>
+	<subject>
+	<SubjectID>123</SubjectID>
+	<SubjectName>Physics</SubjectName>
+	<SubbjectMarks>33</SubbjectMarks>
+	</subject>
+	<subject>
+	<SubjectID>185</SubjectID>
+	<SubjectName>Chemistry</SubjectName>
+	<SubbjectMarks>33</SubbjectMarks>
+	</subject>
+	<subject>
+	<SubjectID>256</SubjectID>
+	<SubjectName>Maths</SubjectName>
+	<SubbjectMarks>33</SubbjectMarks>
+	</subject>
+	<subject>
+	<SubjectID>1167</SubjectID>
+	<SubjectName>English</SubjectName>
+	<SubbjectMarks>33</SubbjectMarks>
+	</subject>
+	<subject>
+	<SubjectID>456</SubjectID>
+	<SubjectName>German</SubjectName>
+	<SubbjectMarks>33</SubbjectMarks>
+	</subject>
+</Subjects>
+</Student>
+<Student>
+<ID>121</ID>
+<Name>Ankit</Name>
+<Subjects>
+	<subject>
+	<SubjectID>123</SubjectID>
+	<SubjectName>Physics</SubjectName>
+	<SubbjectMarks>86</SubbjectMarks>
+	</subject>
+	<subject>
+	<SubjectID>185</SubjectID>
+	<SubjectName>Chemistry</SubjectName>
+	<SubbjectMarks>95</SubbjectMarks>
+	</subject>
+	<subject>
+	<SubjectID>256</SubjectID>
+	<SubjectName>Maths</SubjectName>
+	<SubbjectMarks>100</SubbjectMarks>
+	</subject>
+	<subject>
+	<SubjectID>1167</SubjectID>
+	<SubjectName>English</SubjectName>
+	<SubbjectMarks>94</SubbjectMarks>
+	</subject>
+	<subject>
+	<SubjectID>456</SubjectID>
+	<SubjectName>German</SubjectName>
+	<SubbjectMarks>87</SubbjectMarks>
+	</subject>
+</Subjects>
+</Student>
+<Student>
+<ID>142</ID>
+<Name>Rohan</Name>
+<Subjects>
+	<subject>
+	<SubjectID>123</SubjectID>
+	<SubjectName>Physics</SubjectName>
+	<SubbjectMarks>85</SubbjectMarks>
+	</subject>
+	<subject>
+	<SubjectID>185</SubjectID>
+	<SubjectName>Chemistry</SubjectName>
+	<SubbjectMarks>92</SubbjectMarks>
+	</subject>
+	<subject>
+	<SubjectID>256</SubjectID>
+	<SubjectName>Maths</SubjectName>
+	<SubbjectMarks>98</SubbjectMarks>
+	</subject>
+	<subject>
+	<SubjectID>1167</SubjectID>
+	<SubjectName>English</SubjectName>
+	<SubbjectMarks>94</SubbjectMarks>
+	</subject>
+	<subject>
+	<SubjectID>456</SubjectID>
+	<SubjectName>German</SubjectName>
+	<SubbjectMarks>87</SubbjectMarks>
+	</subject>
+</Subjects>
+</Student>
+</School>
