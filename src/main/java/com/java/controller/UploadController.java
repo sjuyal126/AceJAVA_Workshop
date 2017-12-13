@@ -39,7 +39,7 @@ import javax.xml.bind.Unmarshaller;
 @Controller
 public class UploadController {
     
-	static String UPLOADED_FOLDER = "D://temp//";
+	static String UPLOADED_FOLDER = "E://temp//";
 	
     @Autowired
     private StudentDAO studentDAOimpl;

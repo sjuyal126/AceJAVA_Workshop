@@ -3,6 +3,7 @@ package com.java.service;
 
 import java.io.File;
 
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -12,10 +13,15 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -47,7 +53,7 @@ import com.java.repository.StudentRepository;
 @Service
 public class StudentDAOImpl implements StudentDAO{
 	
-	static String UPLOADED_FOLDER = "D://temp//";
+	static String UPLOADED_FOLDER = "E://temp//";
 	private StudentRepository studentRepository;
 	private List<Student> list;
 	
@@ -75,8 +81,7 @@ public class StudentDAOImpl implements StudentDAO{
     		
     		for(Student s1 : this.getStudents()) {
     			s1.setSTATUS(this.setStatus(s1.getSubject()));
-    			s1.setTotal_marks(this.calculateTotal(s1.getSubject()));
-    				
+    			s1.setTotal_marks(this.calculateTotal(s1.getSubject()));	
     		}
     		
     		this.calculateRank(this.getStudents());
@@ -132,6 +137,7 @@ public class StudentDAOImpl implements StudentDAO{
 		int total = subjects.stream().mapToInt(t -> t.getSubject_marks()).sum();
 		return total;
 	}
+	
 	@Override
 	public void generateJsonReports(Student students) {
 		ObjectMapper mapper = new ObjectMapper();
@@ -149,16 +155,33 @@ public class StudentDAOImpl implements StudentDAO{
 			
 		}
 	}
+	
 	@Override
 	public void calculateRank(List<Student> students) {
-		students.stream().sorted(Comparator.comparingInt(Student::getTotal_marks)
-				.thenComparing(student -> student.getSTATUS().equalsIgnoreCase("fail")).reversed());
+		Set<Integer> set = new TreeSet<>();
+		Map<Integer, Integer> map = new LinkedHashMap<>();
+		List<Student> passStudents = students.stream()
+				.filter(t -> t.getSTATUS().equalsIgnoreCase("pass"))
+				.collect(Collectors.toList());
 		
-		Iterator itr = students.iterator();
-		for (int i=0; i < students.size(); i++) {
-			students.get(i).setRANK(i);
+		for(Student s1 : passStudents) {
+			set.add(s1.getTotal_marks());
 		}
-			
+		List<Integer> list = new ArrayList<>(set);
+		list.sort((Integer i1, Integer i2) -> i2-i1);
+		
+		Iterator itr = list.iterator();
+		int i =1;
+		while(itr.hasNext()) {
+			Integer marks = (Integer) itr.next();
+			map.put(marks, i);
+			i++;
+		}
+		
+		for(Student s1 : passStudents) {
+			s1.setRANK(map.get(s1.getTotal_marks()));
+		}
+		
 	}
 	
 }

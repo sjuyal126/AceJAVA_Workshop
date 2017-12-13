@@ -1,14 +1,15 @@
-
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <body>
 <h1>Upload Status</h1>
 <div th:if="${message}">
     <h2 th:text="${message}"/>
 </div>
 
-<form:form action="viewReports" method="post">
+<form action="viewReports" method="post">
 <input type="text" name="id"/><br/>
 <input type="button" value="View Reports"/>
-</form:form>
+</form>
 
 </body>
 </html>

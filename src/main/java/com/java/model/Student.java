@@ -41,7 +41,7 @@ public class Student implements Serializable{
 	private String STATUS;
 	
 	@Transient
-	public int rank;
+	private int  rank;
 	
 	public int getRANK() {
 		return rank;
@@ -95,4 +95,29 @@ public class Student implements Serializable{
 	public void setSubject(Set<Subject> subject) {
 		this.listOfsubjects = subject;
 	}
+	
+	public int hashCode() {
+		return this.total_marks;
+	}
+	
+	public boolean equals(Object obj) {
+		Student student = (Student) obj;
+		if(this.total_marks == student.total_marks) {
+			return true;
+		}
+		else
+			return false;
+	}
+
+	/*@Override
+	public int compareTo(Object obj) {
+		Student s1 = (Student) obj;
+		if(this.total_marks - s1.total_marks > 0) {
+			return -1;
+		}
+		else if(this.total_marks - s1.total_marks < 0) {
+			return +1;
+		}
+			return 0;
+	}*/
 }
