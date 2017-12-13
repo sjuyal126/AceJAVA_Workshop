@@ -90,8 +90,9 @@ public class UploadController {
     }
     
     @PostMapping("/viewReports")
-	public String Reports(@RequestParam("id") int student_id, RedirectAttributes redirectAttributes) throws FileNotFoundException, IOException, ParseException {
+	public ModelAndView Reports(@RequestParam( "id") String student_id) throws FileNotFoundException, IOException, ParseException {
 		
+    	ModelAndView model = new ModelAndView("ViewReports");
 		String fileName = student_id + "_student.json";
 		File file = new File(UPLOADED_FOLDER);
 		File[] files = file.listFiles();
@@ -101,16 +102,12 @@ public class UploadController {
 				Path p = Paths.get(files[i].getAbsolutePath());
 				byte[] data = Files.readAllBytes(p);
 				String jsonString = new String(data);
-	            redirectAttributes.addFlashAttribute("message", jsonString);
+				model.addObject("message", jsonString);
 			}
 		}
-		
-        return "redirect:/viewStatus";
+		return model;
+        
 	}
     
-    @GetMapping("/viewStatus")
-    public String showReport() {
-    	return "ViewReports";
-    }
     	
     }

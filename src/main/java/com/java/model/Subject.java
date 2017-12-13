@@ -36,6 +36,18 @@ public class Subject implements Serializable {
 	@JoinColumn(name = "student_id")
 	@JsonBackReference
 	private Student student;
+	
+	public Subject() {
+		
+	}
+	
+	public Subject(int subject_id, String subject_name, int subject_marks, Student student) {
+		super();
+		this.subject_id = subject_id;
+		this.subject_name = subject_name;
+		this.subject_marks = subject_marks;
+		this.student = student;
+	}
 
 	public int getSubject_id() {
 		return subject_id;

@@ -43,6 +43,16 @@ public class Student implements Serializable{
 	@Transient
 	private int  rank;
 	
+	public Student() {
+		
+	}
+	
+	public Student(int student_id, String student_name) {
+		super();
+		this.student_id = student_id;
+		this.student_name = student_name;
+	}
+
 	public int getRANK() {
 		return rank;
 	}

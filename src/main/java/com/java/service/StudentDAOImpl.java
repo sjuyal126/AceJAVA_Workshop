@@ -54,13 +54,10 @@ import com.java.repository.StudentRepository;
 public class StudentDAOImpl implements StudentDAO{
 	
 	static String UPLOADED_FOLDER = "E://temp//";
+	@Autowired
 	private StudentRepository studentRepository;
 	private List<Student> list;
 	
-	@Autowired
-	public StudentDAOImpl(StudentRepository studentRepository) {
-		this.studentRepository = studentRepository;
-	}
 	@Override
 	public void save(List<Student> student) {
 		
