@@ -1,0 +1,28 @@
+{
+  "total_marks" : 462,
+  "rank" : 2,
+  "name" : "Rohan",
+  "id" : 142,
+  "subject" : [ {
+    "subject_id" : 45,
+    "subject_name" : "English",
+    "subject_marks" : 94
+  }, {
+    "subject_id" : 43,
+    "subject_name" : "Maths",
+    "subject_marks" : 100
+  }, {
+    "subject_id" : 41,
+    "subject_name" : "German",
+    "subject_marks" : 87
+  }, {
+    "subject_id" : 44,
+    "subject_name" : "Chemistry",
+    "subject_marks" : 95
+  }, {
+    "subject_id" : 42,
+    "subject_name" : "Physics",
+    "subject_marks" : 86
+  } ],
+  "status" : "PASS"
+}

@@ -101,12 +101,16 @@ public class UploadController {
 				Path p = Paths.get(files[i].getAbsolutePath());
 				byte[] data = Files.readAllBytes(p);
 				String jsonString = new String(data);
-	            redirectAttributes.addFlashAttribute("message", "Please select a file to upload");
+	            redirectAttributes.addFlashAttribute("message", jsonString);
 			}
 		}
 		
-        return "ViewReports";
-        
+        return "redirect:/viewStatus";
 	}
+    
+    @GetMapping("/viewStatus")
+    public String showReport() {
+    	return "ViewReports";
+    }
     	
     }
