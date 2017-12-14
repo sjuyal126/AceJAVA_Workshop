@@ -6,6 +6,7 @@ import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,6 +35,7 @@ import java.util.concurrent.Future;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
+import javax.xml.bind.UnmarshalException;
 import javax.xml.bind.Unmarshaller;
 
 @Controller
@@ -90,7 +92,7 @@ public class UploadController {
     }
     
     @PostMapping("/viewReports")
-	public ModelAndView Reports(@RequestParam( "id") String student_id) throws FileNotFoundException, IOException, ParseException {
+	public ModelAndView Reports(@RequestParam( "id") String student_id) throws FileNotFoundException, IOException, ParseException, UnmarshalException {
 		
     	ModelAndView model = new ModelAndView("ViewReports");
 		String fileName = student_id + "_student.json";
@@ -107,7 +109,14 @@ public class UploadController {
 		}
 		return model;
         
-	}
+	}  
     
+    @ExceptionHandler(value = { Exception.class })
+    public ModelAndView handleError(Exception e) {
+    	ModelAndView model = new ModelAndView("error");
+        model.addObject("message", e.getMessage());
+        return model;
+
+    }
     	
     }
